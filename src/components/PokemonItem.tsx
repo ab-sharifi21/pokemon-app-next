@@ -16,7 +16,7 @@ export function PokemonItem({ name, url }: Result) {
       />
       <span className="text-lg font-semibold capitalize">{name}</span>
       <Link
-        href={`/${name}`}
+        href={`/pokemons/${name}`}
         className=" flex items-center gap-2 rounded-full bg-btnColor px-3 py-1 text-sm hover:scale-110"
       >
         <span>More</span>

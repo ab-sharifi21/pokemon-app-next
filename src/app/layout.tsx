@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${montserrat.className} grid min-h-screen place-items-center bg-primaryBgColor text-white`}
+        className={`${montserrat.className} flex min-h-screen justify-center bg-primaryBgColor text-white`}
       >
         <div className="p-6">
           <Header />
