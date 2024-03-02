@@ -2,6 +2,8 @@ import { PokemonInfo } from '@/components';
 import { getPokemonByName } from '@/helpers/getPokemonByName';
 import { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
+import { IoMdArrowBack } from 'react-icons/io';
 
 interface Props {
   params: { name: string };
@@ -29,12 +31,17 @@ async function PokemonPage({ params }: Props) {
   return (
     <section className="my-8 flex flex-col items-center gap-4 px-2">
       <div className="flex w-full items-center justify-between">
-        <span className="font-semibold">#0{id}</span>
+        <Link
+          href="/pokemons"
+          className="rounded-lg bg-btnColor px-2 py-1 text-xl duration-500 hover:scale-105"
+        >
+          <IoMdArrowBack />
+        </Link>
         <span className="text-lg font-bold">{name}</span>
       </div>
       <div className="flex w-full flex-col items-center justify-center gap-4">
         <Image
-          className="drop-shadow-mainDropShadow hover:scale-110"
+          className="drop-shadow-mainDropShadow duration-700 hover:scale-110"
           src={pokemon.sprites.other?.dream_world.front_default ?? ''}
           width={200}
           height={180}
@@ -53,7 +60,7 @@ async function PokemonPage({ params }: Props) {
           })}
         </div>
       </div>
-      <div className="shadow-mainBoxShadow bg-secondaryBgColor">
+      <div className="bg-secondaryBgColor shadow-mainBoxShadow">
         <PokemonInfo text="Height" value={height} />
         <PokemonInfo text="Weight" value={weight} />
       </div>
