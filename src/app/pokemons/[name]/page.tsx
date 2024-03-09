@@ -3,7 +3,9 @@ import { getPokemonByName } from '@/helpers/getPokemonByName';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { GiWeightScale } from 'react-icons/gi';
 import { IoMdArrowBack } from 'react-icons/io';
+import { MdOutlineHeight, MdOutlineMergeType } from 'react-icons/md';
 
 interface Props {
   params: { name: string };
@@ -27,9 +29,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 async function PokemonPage({ params }: Props) {
   const pokemon = await getPokemonByName(params.name);
-  const { id, name, abilities, height, weight } = pokemon;
+  const { id, name, abilities, height, weight, types } = pokemon;
   return (
-    <section className="my-8 flex flex-col items-center gap-4 px-2">
+    <section className="my-8 flex max-w-[25rem] flex-col items-center gap-4 px-2">
       <div className="flex w-full items-center justify-between">
         <Link
           href="/pokemons"
@@ -60,9 +62,22 @@ async function PokemonPage({ params }: Props) {
           })}
         </div>
       </div>
-      <div className="bg-secondaryBgColor shadow-mainBoxShadow">
-        <PokemonInfo text="Height" value={height} />
-        <PokemonInfo text="Weight" value={weight} />
+      <div className="flex w-full flex-wrap gap-4 rounded-lg bg-secondaryBgColor px-4 py-8 shadow-mainBoxShadow">
+        <PokemonInfo
+          icon={<MdOutlineHeight className="h-12 w-4 text-btnColor" />}
+          text="Height"
+          value={`${height} m`}
+        />
+        <PokemonInfo
+          icon={<GiWeightScale className="h-12 w-4 text-btnColor" />}
+          text="Weight"
+          value={`${weight} kg`}
+        />
+        <PokemonInfo
+          icon={<MdOutlineMergeType className="h-12 w-4 text-btnColor" />}
+          text="Type"
+          value={`${types[0].type.name}`}
+        />
       </div>
     </section>
   );

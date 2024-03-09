@@ -20,7 +20,7 @@ export default function RootLayout({
       <body
         className={`${montserrat.className} flex min-h-screen justify-center bg-primaryBgColor text-white`}
       >
-        <div className="p-6">
+        <div className="max-w-6xl p-6">
           <Header />
           {children}
         </div>
